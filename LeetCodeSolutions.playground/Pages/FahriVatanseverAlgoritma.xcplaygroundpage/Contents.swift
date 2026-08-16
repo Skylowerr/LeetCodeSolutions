@@ -135,4 +135,18 @@ func siraliMi<T: Comparable>(dizi : [T]) -> Bool {
 //print(siraliMi(dizi: ["Ahmet","Mehmet","Emirhan"]))
 
 
+//MARK: 2D ARRAYS
+var grid : [[Int]] = [] //Boş 2 boyutlu dizi
+
+var matrix = Array(repeating: Array(repeating: 0, count: 4), count: 3)
+
+print(matrix) // [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+var board : [[String]] = [
+    ["x","o","x"],
+    ["x","x","o"],
+    ["o","x","x"]
+]
+print(board[0][1])
+
 
