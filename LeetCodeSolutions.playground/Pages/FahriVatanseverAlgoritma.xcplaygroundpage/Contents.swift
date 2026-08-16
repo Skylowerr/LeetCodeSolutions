@@ -95,7 +95,6 @@ let sonucMetni = kelime3.map { $0.uppercased() }.joined()
 //print(sonucMetni)
 
 
-
 //MARK: Örnek- 7.39 Klavyeden küçük harflerle girilen bir kelimenin sırasıyla sesli harflerinden k1, sessiz harflerinden k2 kelimesini oluştur
 
 //TODO: Set(Küme) ile yaptığım için O(1)
@@ -111,12 +110,29 @@ func ikiKelimeOlustur(cumle: String) {
             k2.append(letter)
         }
     }
-    
     print(k1)
     print(k2)
 }
+//print(ikiKelimeOlustur(cumle: "Ankara"))
 
-print(ikiKelimeOlustur(cumle: "Ankara"))
+
+//MARK: 7.52 : Verilen bir dizinin küçükten büyüğe doğru sıralı olup olmadığını test eden fonksiyon
+//Bundan daha hızlısı yok çünkü sıralı olup olmadığını anlamak için dizideki her elemana en az bir kez bakmak lazım
+
+func siraliMi<T: Comparable>(dizi : [T]) -> Bool {
+    guard dizi.count > 1 else {return true}
+    
+    for i in 1..<dizi.count{
+        if dizi[i-1] > dizi[i]{
+            return false
+        }
+    }
+    return true
+    
+}
+
+//print(siraliMi(dizi: [105,6,7,8]))
+//print(siraliMi(dizi: ["Ahmet","Mehmet","Emirhan"]))
 
 
 
