@@ -140,13 +140,101 @@ var grid : [[Int]] = [] //Boş 2 boyutlu dizi
 
 var matrix = Array(repeating: Array(repeating: 0, count: 4), count: 3)
 
-print(matrix) // [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+//print(matrix) // [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 
 var board : [[String]] = [
     ["x","o","x"],
     ["x","x","o"],
     ["o","x","x"]
 ]
-print(board[0][1])
+//print(board[0][1])
 
 
+//MARK: 12.2  : n elemanlı a dizisini küçükten büyüğe sıralayan algoritma
+
+func kucuktenBuyugeBubbleSort(elemanlar: [Int]) -> [Int] {
+    var siraliDizi = elemanlar
+    
+    for i in 0..<siraliDizi.count {
+        for j in 0..<siraliDizi.count - 1 - i {
+            if siraliDizi[j] > siraliDizi[j+1] {
+                let temp = siraliDizi[j]
+                siraliDizi[j] = siraliDizi[j+1]
+                siraliDizi[j+1] = temp
+            }
+        }
+    }
+    return siraliDizi
+}
+
+print(kucuktenBuyugeBubbleSort(elemanlar: [5, 11, 8,-1]))
+// [5, 8, 11]
+
+
+
+//MARK: 12.6 : n elemanlı A dizisini küçükten büyüğe Insertion Sort
+func kucuktenBuyugeInsertionSort(elemanlar: [Int]) -> [Int] {
+    var siraliDizi = elemanlar
+    
+    for i in 1..<siraliDizi.count {
+        let mevcutEleman = siraliDizi[i]
+        var j = i - 1
+        
+        // Soldaki eleman sağındakinden büyükse
+        while j >= 0 && siraliDizi[j] > mevcutEleman {
+            siraliDizi[j + 1] = siraliDizi[j]
+            j -= 1
+        }
+        
+        // mevcutEleman'ı doğru boşluğa yerleştir
+        siraliDizi[j + 1] = mevcutEleman
+    }
+    
+    return siraliDizi
+}
+
+print(kucuktenBuyugeInsertionSort(elemanlar: [5, 11, 8,-1]))
+// [5, 8, 11]
+
+
+//MARK: 13.1 : LINEAR SEARCH
+//n elemanlı A dizisi içinindeki istenen degeri Linear Search ile bul
+
+func linearSearch(dizi : [Int],istenenSayi : Int)->Bool{
+    var bulunduMu : Bool = false
+    
+    for i in 0..<dizi.count{
+        if istenenSayi == dizi[i]{
+            bulunduMu = true
+            break
+        }
+    }
+    return bulunduMu
+}
+
+print(linearSearch(dizi: [5,11,2,6,2,8], istenenSayi: 2))
+
+//MARK: 13.3 BINARY SEARCH
+//n elemanlı A dizisi içinindeki istenen degeri Binary Search ile bul(indexini)
+
+func binarySearch(dizi: [Int], aranan: Int) -> Int {
+    var sol = 0
+    var sag = dizi.count - 1
+    
+    while sol <= sag {
+        let orta = (sol + sag) / 2
+        
+        if dizi[orta] == aranan {
+            return orta //index'i döndür
+        } else if dizi[orta] < aranan {
+            sol = orta + 1 // aranan sağ yarıda
+        } else {
+            sag = orta - 1 // aranan sol yarıda
+        }
+    }
+    
+    return -1 // bulunamadı
+    
+}
+let siraliDizi = [2, 5, 8, 11, 17, 23, 38, 45]
+print(binarySearch(dizi: siraliDizi, aranan: 23)) // Indexini döndürf
